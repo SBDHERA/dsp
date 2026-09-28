@@ -1,12 +1,11 @@
 terraform {
   required_version = ">= 1.5.0"
 
-  # Connect to Terraform Cloud (HCP Terraform) using dynamic workspace selection
-  cloud {
+  # We use the standard backend block so GitHub Actions and TF_WORKSPACE can drive it cleanly
+  backend "remote" {
     organization = "sigbl"
-
     workspaces {
-      name = "development" # Default fallback; overridden by TF_WORKSPACE env variable in CI/CD
+      prefix = "" # Allows exact workspace matching via TF_WORKSPACE
     }
   }
 

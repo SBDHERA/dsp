@@ -1,12 +1,12 @@
 terraform {
   required_version = ">= 1.5.0"
 
-  # Connect to Terraform Cloud (HCP Terraform) using workspace tags for multi-environment routing
+  # Connect to Terraform Cloud (HCP Terraform) using dynamic workspace selection
   cloud {
     organization = "sigbl"
 
     workspaces {
-      tags = ["dsp-ecommerce"]
+      name = "development" # Default fallback; overridden by TF_WORKSPACE env variable in CI/CD
     }
   }
 

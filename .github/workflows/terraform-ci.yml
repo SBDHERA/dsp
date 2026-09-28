@@ -1,11 +1,16 @@
-
 name: Terraform Validate and Plan
 
 on:
   push:
-    branches: [ development, staging, main ]
+    branches:
+      - development
+      - staging
+      - main
   pull_request:
-    branches: [ development, staging, main ]
+    branches:
+      - development
+      - staging
+      - main
 
 jobs:
   terraform:

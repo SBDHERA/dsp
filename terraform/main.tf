@@ -1,5 +1,15 @@
 terraform {
   required_version = ">= 1.5.0"
+
+  # Connect to Terraform Cloud (HCP Terraform)
+  cloud {
+    organization = "sigbl"
+
+    workspaces {
+      name = "development" # Replace with your exact workspace name if different
+    }
+  }
+
   required_providers {
     local = {
       source  = "hashicorp/local"

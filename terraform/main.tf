@@ -1,11 +1,12 @@
 terraform {
   required_version = ">= 1.5.0"
 
-  # We use the standard backend block so GitHub Actions and TF_WORKSPACE can drive it cleanly
+  # Connect to HCP Terraform using the remote backend with an empty prefix for dynamic workspace routing
   backend "remote" {
     organization = "sigbl"
+
     workspaces {
-      prefix = "" # Allows exact workspace matching via TF_WORKSPACE
+      prefix = "" 
     }
   }
 

@@ -1,12 +1,12 @@
 terraform {
   required_version = ">= 1.5.0"
 
-  # Connect to HCP Terraform using the remote backend with an empty prefix for dynamic workspace routing
-  backend "remote" {
+  # Connect to HCP Terraform using workspace tags for dynamic multi-environment routing
+  cloud {
     organization = "sigbl"
 
     workspaces {
-      prefix = "" 
+      tags = ["dsp-ecommerce"]
     }
   }
 

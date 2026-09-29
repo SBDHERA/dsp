@@ -1,12 +1,12 @@
 terraform {
   required_version = ">= 1.5.0"
 
-  # Connect to Terraform Cloud (HCP Terraform)
-  cloud {
+  # Connect to HCP Terraform using the remote backend with an empty prefix for dynamic workspace routing
+  backend "remote" {
     organization = "sigbl"
 
     workspaces {
-      name = "development" # Replace with your exact workspace name if different
+      prefix = "" 
     }
   }
 

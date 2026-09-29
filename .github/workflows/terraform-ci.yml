@@ -34,7 +34,7 @@ jobs:
     - name: Terraform Init
       run: terraform init
       env:
-        TF_WORKSPACE: ${{ github.ref_name == 'main' && 'production' || github.ref_name }}
+        TF_WORKSPACE: ${{ github.event_name == 'pull_request' && (github.base_ref == 'main' && 'production' || github.base_ref) || (github.ref_name == 'main' && 'production' || github.ref_name) }}
 
     - name: Terraform Validate
       run: terraform validate
@@ -42,7 +42,7 @@ jobs:
     - name: Terraform Plan
       run: terraform plan
       env:
-        TF_WORKSPACE: ${{ github.ref_name == 'main' && 'production' || github.ref_name }}
+        TF_WORKSPACE: ${{ github.event_name == 'pull_request' && (github.base_ref == 'main' && 'production' || github.base_ref) || (github.ref_name == 'main' && 'production' || github.ref_name) }}
 
   terraform-apply:
     name: 'Terraform Apply'
